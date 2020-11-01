@@ -611,7 +611,8 @@ static int verify_signed_data(gnutls_pubkey_t pubkey, gnutls_privkey_t privkey,
 	algo = gnutls_pk_to_sign(gnutls_privkey_get_pk_algorithm(privkey, NULL),
 				 GNUTLS_DIG_SHA1);
 
-	return gnutls_pubkey_verify_data2(pubkey, algo, 0, data, sig);
+	return gnutls_pubkey_verify_data2(pubkey, algo, GNUTLS_VERIFY_ALLOW_BROKEN,
+			      data, sig);
 }
 #endif /* (P11KIT || TROUSERS || TSS2 || SYSTEM_KEYS) */
 
